@@ -1,0 +1,52 @@
+﻿@model Candy
+
+
+
+<div class="col-sm-6 col-md-6 col-lg-4">
+
+    <div class="card" width="">
+        <div class="card-header">
+            <h4>@Model.Name</h4>
+
+        </div>
+        <img class="card-img-top" src="@Model.ImageThumbailUrl" alt="Image For candy shop" />
+
+        <div class="card-body">
+
+
+            <p class="card-text">@Model.Description</p>
+            <button class="btn-sm @Model.Name">Show Description</button>
+            <h2 class="card-title">@Model.Price.ToString("c")</h2>
+            <h3><a asp-controller="ShoppingCart" asp-action="Details" asp-route-candyid="@Model.CandyId">@Model.Name</a></h3>
+
+            <a class="btn-lg" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-candyId="@Model.CandyId">Add To Cart</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script>
+
+    $(".card-text").each(function () {
+        $(this).hide();
+
+        $(".btn-sm").click((function () {
+            $(this).prev().toggle()
+            if ($(this).text() === "Show Description") {
+
+                $(this).text("Hide Description");
+            } else {
+                $(this).text("Show Description");
+            }
+
+
+        }));
+
+
+    });
+
+
+
+</script>
